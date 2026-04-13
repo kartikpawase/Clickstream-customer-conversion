@@ -8,7 +8,11 @@ from datetime import datetime
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
-from database import get_db_connection, log_api_call
+try:
+    from database import get_db_connection, log_api_call
+except Exception:
+    def get_db_connection(): return None
+    def log_api_call(endpoint, data): pass
 
 load_dotenv()
 app = Flask(__name__)
@@ -217,7 +221,4 @@ def upload_data():
         return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
-    from waitress import serve
-    print("🚀 Localhost Production Server Initialized via Waitress on Port 5000!")
-    print("🌐 Open http://localhost:5000 to access the platform.")
-    serve(app, host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=False)
