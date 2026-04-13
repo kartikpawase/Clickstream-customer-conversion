@@ -19,8 +19,8 @@ ENV/
 # Environment Variables
 .env
 
-# ML Models (large binary files - regenerate with train_models.py)
-models/*.pkl
+# ML Models
+# models/*.pkl
 
 # IDE
 .vscode/
