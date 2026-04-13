@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row text-center mb-5" data-aos="fade-down">
+        <div class="col-12">
+            <h2 class="text-white fw-bold">Customer Clustering</h2>
+            <p class="text-white-50">Discover hidden patterns via K-Means Unsupervised Learning.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card segment-card p-4 text-center h-100">
+                <div class="icon-box mx-auto mb-3" style="background: rgba(255, 99, 132, 0.2); color: #ff6384;">
+                    <i class="fa-solid fa-crown fs-2"></i>
+                </div>
+                <h4 class="text-white">High Value / Loyal</h4>
+                <p class="text-white-50 small">High click rate, frequent purchases above $200. Core demographic for premium campaigns.</p>
+            </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card segment-card p-4 text-center h-100">
+                <div class="icon-box mx-auto mb-3" style="background: rgba(54, 162, 235, 0.2); color: #36a2eb;">
+                    <i class="fa-solid fa-eye fs-2"></i>
+                </div>
+                <h4 class="text-white">Window Shoppers</h4>
+                <p class="text-white-50 small">High clicks but extremely low conversion rate. Require retargeting ads or time-limited offers.</p>
+            </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="glass-card segment-card p-4 text-center h-100">
+                <div class="icon-box mx-auto mb-3" style="background: rgba(255, 206, 86, 0.2); color: #ffce56;">
+                    <i class="fa-solid fa-tag fs-2"></i>
+                </div>
+                <h4 class="text-white">Bargain Hunters</h4>
+                <p class="text-white-50 small">Convert quickly when prices are under $50. Responsive to flash sales and discount coupons.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-5" data-aos="fade-up" data-aos-delay="400">
+        <div class="col-12">
+            <div class="glass-card p-4">
+                <h5 class="text-white mb-4">Feature Spread by Segment</h5>
+                <div class="chart-container" style="position: relative; height:40vh; width:100%">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

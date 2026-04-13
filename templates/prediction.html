@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8" data-aos="zoom-in">
+            <div class="glass-card p-5">
+                <h3 class="text-white fw-bold mb-4">Customer Prediction Form</h3>
+                <p class="text-white-50 mb-4">Enter clickstream parameters to predict conversion and potential revenue.</p>
+                
+                <form id="predictForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-light">Session ID</label>
+                            <input type="text" class="form-control glass-input" id="sessionId" placeholder="Ex: sess_99" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light">Country</label>
+                            <select class="form-select glass-input" id="country" required>
+                                <option value="USA">USA</option>
+                                <option value="UK">UK</option>
+                                <option value="India">India</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-light">Product Category</label>
+                            <select class="form-select glass-input" id="category" required>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Home">Home</option>
+                                <option value="Beauty">Beauty</option>
+                                <option value="Sports">Sports</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-light">Session Clicks</label>
+                            <input type="number" class="form-control glass-input" id="clicks" min="1" placeholder="e.g., 20" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-light">Average Item Price View ($)</label>
+                            <input type="number" step="0.01" class="form-control glass-input" id="price" min="0" placeholder="e.g., 150.50" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-light">Session Duration (Seconds)</label>
+                            <input type="number" class="form-control glass-input" id="duration" min="1" placeholder="e.g., 120" required>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill py-2">
+                                <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true" id="predictLoader"></span>
+                                Run Full Deep Learning Prediction
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Result Area -->
+                <div id="resultArea" class="mt-5 d-none text-start">
+                    <hr class="border-secondary">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="glass-card p-4">
+                                <h6 class="text-white-50"><i class="fa-solid fa-cart-shopping me-2 text-primary"></i> Conversion Prediction</h6>
+                                <h4 id="conversionText" class="mb-2 text-white">-</h4>
+                                <small class="text-info d-block mb-2" id="confidenceText"></small>
+                                <p class="text-white-50 small mb-0" id="convExp"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="glass-card p-4">
+                                <h6 class="text-white-50"><i class="fa-solid fa-dollar-sign me-2 text-success"></i> Potential Revenue</h6>
+                                <h4 id="revenueText" class="mb-2 gradient-text">-</h4>
+                                <p class="text-white-50 small mb-0 mt-3" id="revExp"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="glass-card p-4">
+                                <h6 class="text-white-50"><i class="fa-solid fa-user-xmark me-2 text-warning"></i> Churn Risk</h6>
+                                <h4 id="churnText" class="mb-2 text-white">-</h4>
+                                <p class="text-white-50 small mb-0" id="churnExp"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="glass-card p-4">
+                                <h6 class="text-white-50"><i class="fa-solid fa-forward-step me-2 text-info"></i> Likely Next Action</h6>
+                                <h4 id="nextText" class="mb-2 text-white">-</h4>
+                                <p class="text-white-50 small mb-0" id="nextExp"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="glass-card p-4 mt-2">
+                                <h6 class="text-white-50"><i class="fa-solid fa-tags me-2 text-success"></i> AI Product Recommendations</h6>
+                                <ul id="recList" class="text-white mb-2 list-unstyled mt-3"></ul>
+                                <p class="text-white-50 small mb-0 border-top border-secondary pt-2 mt-2" id="recExp"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

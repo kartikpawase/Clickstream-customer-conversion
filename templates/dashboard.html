@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row mb-5" data-aos="fade-down">
+        <div class="col-12">
+            <h2 class="text-white fw-bold">Live Dashboard</h2>
+            <p class="text-white-50">Overview of key metrics and real-time predictions.</p>
+        </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card kpi-card p-4">
+                <p class="text-white-50 mb-1">Total Users Scored</p>
+                <h3 class="gradient-text counter" data-target="25430">0</h3>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card kpi-card p-4">
+                <p class="text-white-50 mb-1">Avg Conversion Rate</p>
+                <h3 class="gradient-text"><span class="counter" data-target="18.4">0</span>%</h3>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="glass-card kpi-card p-4">
+                <p class="text-white-50 mb-1">Total Predicted Rev</p>
+                <h3 class="gradient-text">$<span class="counter" data-target="845200">0</span></h3>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="glass-card kpi-card p-4">
+                <p class="text-white-50 mb-1">Active Segments</p>
+                <h3 class="gradient-text counter" data-target="3">0</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-4">
+        <div class="col-lg-8" data-aos="fade-right">
+            <div class="glass-card p-4 h-100">
+                <h5 class="text-white mb-4">Revenue Trend (30 Days)</h5>
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-left">
+            <div class="glass-card p-4 h-100">
+                <h5 class="text-white mb-4">Customer Segments</h5>
+                <canvas id="segmentChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row align-items-center mb-5" data-aos="fade-up">
+        <div class="col-lg-6">
+            <h2 class="text-white fw-bold mb-4">About the Project</h2>
+            <p class="text-white-50 lead">
+                "Built an end-to-end AI-powered SaaS platform for customer conversion analytics with real-time prediction, segmentation, and intelligent insights."
+            </p>
+            <p class="text-white-50">
+                The platform ingests clickstream data to intelligently predict if a browsing user will convert into a paying customer. It utilizes advanced machine learning pipelines deployed behind a robust Python Flask REST backend, integrated with a MySQL database for persistent storage.
+            </p>
+            <div class="mt-4">
+                <span class="badge bg-primary bg-opacity-25 text-primary p-2 me-2 mb-2 border border-primary">Python Flask</span>
+                <span class="badge bg-info bg-opacity-25 text-info p-2 me-2 mb-2 border border-info">Scikit-Learn</span>
+                <span class="badge bg-warning bg-opacity-25 text-warning p-2 me-2 mb-2 border border-warning">MySQL</span>
+                <span class="badge bg-success bg-opacity-25 text-success p-2 me-2 mb-2 border border-success">Vanilla CSS / Bootstrap</span>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0 text-center text-lg-end" data-aos="fade-left">
+            <div class="glass-card p-4 d-inline-block text-start">
+                <h5 class="text-white border-bottom border-secondary pb-3 mb-3">Tech Architecture Diagram</h5>
+                <ul class="list-unstyled text-white-50 mb-0">
+                    <li class="mb-2"><i class="fa-solid fa-desktop me-2 text-primary"></i> <b>Frontend:</b> HTML/CSS/JS + GSAP</li>
+                    <li class="mb-2"><i class="fa-solid fa-server me-2 text-success"></i> <b>Backend:</b> Flask REST API</li>
+                    <li class="mb-2"><i class="fa-solid fa-database me-2 text-warning"></i> <b>Database:</b> MySQL (XAMPP)</li>
+                    <li class="mb-0"><i class="fa-solid fa-brain me-2 text-info"></i> <b>ML Ops:</b> Pickle + Scikit-learn Models</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row mb-4" data-aos="fade-down">
+        <div class="col-12 text-center">
+            <h2 class="text-white fw-bold">AI-Generated Insights</h2>
+            <p class="text-white-50">Automated business recommendations based on backend predictive modeling.</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div id="insightsContainer" class="d-none">
+                <!-- Injected via JS -->
+            </div>
+            
+            <div class="text-center" id="insightsLoader">
+                <div class="spinner-border text-primary my-5" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="text-white-50">Analyzing recent clickstream data...</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(() => {
+            fetch('/api/insights')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('insightsLoader').classList.add('d-none');
+                    const container = document.getElementById('insightsContainer');
+                    container.classList.remove('d-none');
+                    
+                    let delay = 100;
+                    for (const [key, val] of Object.entries(data.insights)) {
+                        const insightHtml = `
+                            <div class="glass-card p-4 mb-4" data-aos="fade-up" data-aos-delay="${delay}">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box me-3 p-3 rounded-circle text-white bg-primary bg-opacity-25" style="width:50px; height:50px; display:flex; align-items:center; justify-content:center;">
+                                        <i class="fa-solid fa-lightbulb"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-white mb-1">Generated Insight</h5>
+                                        <p class="text-white-50 mb-0">${val}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML += insightHtml;
+                        delay += 100;
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('insightsLoader').innerHTML = '<p class="text-danger">Failed to load insights.</p>';
+                });
+        }, 1500); // Simulate processing time for UX
+    });
+</script>
+{% endblock %}
